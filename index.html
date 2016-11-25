@@ -5,13 +5,31 @@
     <title></title>
     <script src="js/dashboard.js"></script>
 </head>
-<body>
-<canvas id="dashboard" width="1024px" height="600px" style="background: #000"></canvas>
+<body style="background: #000">
+<div id="dashboard"></div>
 <script type="text/javascript">
-    var canvas = document.getElementById("dashboard");
-    new dashboard({
-        'canvas': canvas
+    var dashboard = new dashboard({
+        id: 'dashboard',
+        width: 1024,
+        height: 560,
+        mode: 'sport'
     });
+
+    dashboard.info.setTotal(16195);
+    dashboard.info.setTrip(2359.5);
+
+    var speed = 0;
+    dashboard.limit.setValue(80);
+    setInterval(function() {
+        dashboard.speed.value = speed;
+    	speed += 20;
+    }, 1000);
+
+    var rev = 0;
+    setInterval(function() {
+        dashboard.rev.value = rev;
+    	rev += 500;
+    }, 500);
 </script>
 </body>
 </html>
